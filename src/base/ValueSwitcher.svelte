@@ -23,10 +23,11 @@
 	循环();
 </script> 
 <slot r={r} ></slot>
-<div style="margin-top:15px">
+<div class="config-list" style="margin-top:15px">
 	{#each config_list as item,key}
+		<div>{item.ref}</div>
 		<div>
-			{item.ref} :
+			
 			{#if item.config.type==="color" }
 				<!-- 颜色选择器 -->
 				<input bind:value={item.value} type="color"/>
@@ -48,3 +49,10 @@
 		</div>
 	{/each}
 </div>
+
+<style>
+	.config-list {
+	  display: grid;
+	  grid-template-columns: max-content auto;
+	}
+</style>
