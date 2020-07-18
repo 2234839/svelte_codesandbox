@@ -14,7 +14,7 @@
     {
       title: "border(单标签三角形)",
       component: Example2,
-      describe: "可用用来构建各种各样的单标签三角形"
+      describe: "可用用来构建各种各样的单标签三角形等"
     },
     {
       title: "元素部分半透明",
