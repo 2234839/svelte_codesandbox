@@ -71,7 +71,10 @@
   <blockquote>{cur.describe || 'no describe'}</blockquote>
 </div>
 
-
 <svelte:component this={cur.component}/>
 
 
+<footer style="margin-top:30px">
+  <a href="https://github.com/2234839/svelte_codesandbox">github</a>
+  <a href="https://shenzilong.cn">崮生-一些随笔(主网站)</a>
+</footer>
