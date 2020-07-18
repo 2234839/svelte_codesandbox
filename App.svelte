@@ -12,7 +12,7 @@
       describe: "可以通过这个查看大致的使用方式"
     },
     {
-      title: "border",
+      title: "border(单标签三角形)",
       component: Example2,
       describe: "可用用来构建各种各样的单标签三角形"
     },
@@ -39,7 +39,9 @@
       return;
     }
     const config = JSON.parse(code);
-    cur = list.find(el => el.title === config.cur_title);
+    if (typeof config.cur_i === "number") {
+      cur = list[config.cur_i];
+    }
     config_list_store.update(s => config.config_list || []);
   }
 
@@ -49,10 +51,10 @@
       config_list = s;
       return s;
     });
-    // console.log(cur, config_list_store);
     const hash = LZString.compressToEncodedURIComponent(
       JSON.stringify({
         cur_title: cur.title,
+        cur_i: list.findIndex(el => el === cur),
         config_list
       })
     );
