@@ -1,14 +1,25 @@
 <script>
+	import { config_list_store } from "./store.js";
 	export let config;
 	/** 用来绑定各种选择器用的 */
 	let config_list = [];
-	for (let k in config) {
-	  config_list.push({
-	    ref: k,
-	    config: config[k],
-	    value: config[k].default
-	  });
-	}
+
+	config_list_store.update(s => {
+	  if (s.length) {
+	    /** 存在则重载 */
+	    config_list = s;
+	  } else {
+	    for (let k in config) {
+	      config_list.push({
+	        ref: k,
+	        config: config[k],
+	        value: config[k].default
+	      });
+	    }
+	  }
+	  return config_list;
+	});
+
 	/** 暴露出去给使用者使用选中值的 */
 	let r = {};
 	function 循环() {

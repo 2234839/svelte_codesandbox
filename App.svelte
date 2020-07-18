@@ -1,5 +1,6 @@
 <script>
   import { LZString } from "./src/base/util.js";
+  import { config_list_store } from "./src/base/store.js";
   import Example1 from "./src/用例/用例1.svelte";
   import Example2 from "./src/用例/border.svelte";
   import Example3 from "./src/用例/元素部分半透明.svelte";
@@ -35,14 +36,20 @@
     }
     const config = JSON.parse(code);
     cur = list.find(el => el.title === config.cur_title);
+    config_list_store.update(s => config.config_list);
   }
 
   function share() {
-    console.log(cur);
-
+    let config_list;
+    config_list_store.update(s => {
+      config_list = s;
+      return s;
+    });
+    // console.log(cur, config_list_store);
     const hash = LZString.compressToEncodedURIComponent(
       JSON.stringify({
-        cur_title: cur.title
+        cur_title: cur.title,
+        config_list
       })
     );
     const cur_path = document.location.origin + document.location.pathname;
