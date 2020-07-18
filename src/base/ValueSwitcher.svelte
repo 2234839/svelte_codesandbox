@@ -1,5 +1,6 @@
 <script>
 	export let config;
+	/** 用来绑定各种选择器用的 */
 	let config_list = [];
 	for (let k in config) {
 	  config_list.push({
@@ -7,26 +8,27 @@
 	    config: config[k],
 	    value: config[k].default
 	  });
-	  console.log(k);
 	}
-	let s = {};
+	/** 暴露出去给使用者使用选中值的 */
+	let r = {};
 	function 循环() {
-	  // 利用这个循环来更新值
-	  const r = {};
+	  // 利用这个循环来更新值，将选择的值更新到r,外部组件再使用r来获取用户选中的值
+	  const tmp = {};
 	  config_list.forEach(el => {
-	    r[el.ref] = el.value;
+	    tmp[el.ref] = el.value;
 	  });
-	  s = r;
+	  r = tmp;
 	  requestAnimationFrame(循环);
 	}
 	循环();
 </script> 
-<slot r={s} ></slot>
+<slot r={r} ></slot>
 <div style="margin-top:15px">
 	{#each config_list as item,key}
 		<div>
-			ref : {item.ref}
-			{#if item.config.type==="color"}
+			{item.ref} :
+			{#if item.config.type==="color" }
+				<!-- 颜色选择器 -->
 				<input bind:value={item.value} type="color"/>
 			{:else if item.config.type==="range"}
 				<input bind:value={item.value} min={item.config.min} max={item.config.max} type="range"/>
