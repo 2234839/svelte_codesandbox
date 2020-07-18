@@ -28,7 +28,6 @@
   } catch (error) {
     console.error(error);
   }
-  $: on_cur_change(cur);
   function on_cur_change() {
     /** 切换到其他组件了，置空，这里实际是有问题的。ValueSwicher 无法确定当前配置是自己的，不然这里就不用置空了 */
     config_list_store.update(s => []);
@@ -53,12 +52,15 @@
       config_list = s;
       return s;
     });
+    const share_config = {
+      cur_title: cur.title,
+      cur_i: list.findIndex(el => el === cur),
+      config_list
+    };
+    console.log("share_config", share_config);
+
     const hash = LZString.compressToEncodedURIComponent(
-      JSON.stringify({
-        cur_title: cur.title,
-        cur_i: list.findIndex(el => el === cur),
-        config_list
-      })
+      JSON.stringify(share_config)
     );
     const cur_path = document.location.origin + document.location.pathname;
     window.history.replaceState({}, "", `${cur_path}#code/${hash}`);
@@ -66,7 +68,7 @@
 </script> 
 
 <div>
-  <select bind:value={cur}>
+  <select on:change={on_cur_change} bind:value={cur}>
     {#each list as el}
         <option value={el}>{el.title}</option>
     {/each}
