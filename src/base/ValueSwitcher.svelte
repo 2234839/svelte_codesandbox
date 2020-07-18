@@ -1,9 +1,11 @@
 <script>
 	import { config_list_store } from "./store.js";
+	import Range from "./select/Range.svelte";
 	export let config;
 	/** 用来绑定各种选择器用的 */
 	let config_list = [];
 
+	/** 如果存在默认值则使用默认值 */
 	config_list_store.update(s => {
 	  if (s.length) {
 	    /** 存在则重载 */
@@ -22,7 +24,7 @@
 
 	/** 暴露出去给使用者使用选中值的 */
 	let r = {};
-	function 循环() {
+	(function 循环() {
 	  // 利用这个循环来更新值，将选择的值更新到r,外部组件再使用r来获取用户选中的值
 	  const tmp = {};
 	  config_list.forEach(el => {
@@ -30,8 +32,7 @@
 	  });
 	  r = tmp;
 	  requestAnimationFrame(循环);
-	}
-	循环();
+	})();
 </script>
 <div class="appear">
 	<slot r={r} ></slot>
@@ -44,8 +45,8 @@
 				<!-- 颜色选择器 -->
 				<input bind:value={item.value} type="color"/>
 			{:else if item.config.type==="range"}
-				<input bind:value={item.value} min={item.config.min} max={item.config.max} type="range"/>
-				<!-- <input bind:value={item.value} min={item.config.min} max={item.config.max} type="number"/> -->
+				<!-- 数值范围选择器 -->
+				<Range bind:value={item.value} min={item.config.min} max={item.config.max} showInput={true}} />
 			{:else if item.config.type==="select"}
 				<select bind:value={item.value}>
 					{#each item.config.items as el}
