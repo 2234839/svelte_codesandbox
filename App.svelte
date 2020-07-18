@@ -20,7 +20,7 @@
       describe: "这个在chrome上的兼容性一般般，但在手机上完全可以尝试使用了"
     }
   ];
-  let cur = list[0];
+  let cur = list[1];
 </script> 
 
 <div>
