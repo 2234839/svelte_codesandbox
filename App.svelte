@@ -1,4 +1,5 @@
 <script>
+  import { LZString } from "./src/base/util.js";
   import Example1 from "./src/用例/用例1.svelte";
   import Example2 from "./src/用例/border.svelte";
   import Example3 from "./src/用例/元素部分半透明.svelte";
@@ -21,6 +22,32 @@
     }
   ];
   let cur = list[1];
+  try {
+    loadConfig();
+  } catch (error) {
+    console.error(error);
+  }
+  function loadConfig(params) {
+    const compress_code = document.location.hash.replace("#code/", "").trim();
+    const code = LZString.decompressFromEncodedURIComponent(compress_code);
+    if (!code) {
+      return;
+    }
+    const config = JSON.parse(code);
+    cur = list.find(el => el.title === config.cur_title);
+  }
+
+  function share() {
+    console.log(cur);
+
+    const hash = LZString.compressToEncodedURIComponent(
+      JSON.stringify({
+        cur_title: cur.title
+      })
+    );
+    const cur_path = document.location.origin + document.location.pathname;
+    window.history.replaceState({}, "", `${cur_path}#code/${hash}`);
+  }
 </script> 
 
 <div>
@@ -29,6 +56,7 @@
         <option value={el}>{el.title}</option>
     {/each}
   </select>
+  <button on:click={share} >生成分享url(点击后复制地址栏的url分享给他人)</button>
   <blockquote>{cur.describe || 'no describe'}</blockquote>
 </div>
 
