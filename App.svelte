@@ -47,18 +47,12 @@
   }
 
   function share() {
-    let config_list;
-    config_list_store.update(s => {
-      config_list = s;
-      return s;
-    });
     const share_config = {
       cur_title: cur.title,
       cur_i: list.findIndex(el => el === cur),
-      config_list
+      config_list: $config_list_store
     };
     console.log("share_config", share_config);
-
     const hash = LZString.compressToEncodedURIComponent(
       JSON.stringify(share_config)
     );

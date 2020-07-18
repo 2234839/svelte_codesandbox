@@ -32,18 +32,20 @@
 	  requestAnimationFrame(循环);
 	}
 	循环();
-</script> 
-<slot r={r} ></slot>
+</script>
+<div class="appear">
+	<slot r={r} ></slot>
+</div>
 <div class="config-list" style="margin-top:15px">
 	{#each config_list as item,key}
 		<div>{item.ref}</div>
 		<div>
-			
 			{#if item.config.type==="color" }
 				<!-- 颜色选择器 -->
 				<input bind:value={item.value} type="color"/>
 			{:else if item.config.type==="range"}
 				<input bind:value={item.value} min={item.config.min} max={item.config.max} type="range"/>
+				<!-- <input bind:value={item.value} min={item.config.min} max={item.config.max} type="number"/> -->
 			{:else if item.config.type==="select"}
 				<select bind:value={item.value}>
 					{#each item.config.items as el}
@@ -65,5 +67,9 @@
 	.config-list {
 	  display: grid;
 	  grid-template-columns: max-content auto;
+	}
+	.appear {
+	  padding: 30px;
+	  border: 1px solid #000;
 	}
 </style>
