@@ -28,10 +28,12 @@
   } catch (error) {
     console.error(error);
   }
-  function on_cur_change(params) {
+  $: on_cur_change(cur);
+  function on_cur_change() {
     /** 切换到其他组件了，置空，这里实际是有问题的。ValueSwicher 无法确定当前配置是自己的，不然这里就不用置空了 */
     config_list_store.update(s => []);
   }
+
   function loadConfig(params) {
     const compress_code = document.location.hash.replace("#code/", "").trim();
     const code = LZString.decompressFromEncodedURIComponent(compress_code);
@@ -64,7 +66,7 @@
 </script> 
 
 <div>
-  <select on:change={on_cur_change} bind:value={cur}>
+  <select bind:value={cur}>
     {#each list as el}
         <option value={el}>{el.title}</option>
     {/each}

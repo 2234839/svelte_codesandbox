@@ -5,14 +5,13 @@
 	  color: { default: "#009345", type: "color" },
 	  width: { default: 20, type: "range", max: 100, min: 0 },
 	  height: { default: 20, type: "range", max: 100, min: 0 },
-
 	  topWidth: { default: 20, type: "range", max: 100, min: 0 },
 	  rightWidth: { default: 20, type: "range", max: 100, min: 0 },
 	  bottomWidth: { default: 20, type: "range", max: 100, min: 0 },
 	  leftWidth: { default: 20, type: "range", max: 100, min: 0 },
+
 	  rotateZ: { default: 45, type: "range", max: 360, min: 0 }
 	};
-	//     transform: rotateZ(45deg)
 </script> 
 <div> 
 	<ValueSwitcher {config} let:r={s} >
