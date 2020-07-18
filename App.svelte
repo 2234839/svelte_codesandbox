@@ -36,7 +36,7 @@
     }
     const config = JSON.parse(code);
     cur = list.find(el => el.title === config.cur_title);
-    config_list_store.update(s => config.config_list);
+    config_list_store.update(s => config.config_list || []);
   }
 
   function share() {
