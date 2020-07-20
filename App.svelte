@@ -4,6 +4,7 @@
   import Example1 from "./src/用例/用例1.svelte";
   import Example2 from "./src/用例/border.svelte";
   import Example3 from "./src/用例/元素部分半透明.svelte";
+  import Example4 from "./src/用例/grid.svelte";
 
   const list = [
     {
@@ -20,6 +21,11 @@
       title: "元素部分半透明",
       component: Example3,
       describe: "这个在chrome上的兼容性一般般，但在手机上完全可以尝试使用了"
+    },
+    {
+      title: "grid尝试",
+      component: Example4,
+      describe: ""
     }
   ];
   let cur = list[1];
