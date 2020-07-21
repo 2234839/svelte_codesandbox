@@ -15,7 +15,14 @@
 	  bottomWidth: { default: 20, type: "range", max: 100, min: 0 },
 	  leftWidth: { default: 20, type: "range", max: 100, min: 0 },
 
-	  rotateZ: { default: 45, type: "range", max: 360, min: 0 }
+	  rotateZ: { default: 45, type: "range", max: 360, min: 0 },
+
+	  skewX: { default: 0, type: "range", max: 360, min: -360 },
+	  skewY: { default: 0, type: "range", max: 360, min: -360 },
+
+	  translate3d_X: { default: 0, type: "range", max: 360, min: 0 },
+	  translate3d_Y: { default: 0, type: "range", max: 360, min: 0 },
+	  translate3d_Z: { default: 0, type: "range", max: 360, min: 0 }
 	};
 </script> 
 <div> 
@@ -25,7 +32,9 @@
 								border-right:{s.rightWidth}px solid {s.colorRight};
 								border-bottom:{s.bottomWidth}px solid {s.colorBottom};
 								border-left:{s.leftWidth}px solid {s.colorLeft};
-								transform: rotateZ({s.rotateZ}deg);
+								transform: rotateZ({s.rotateZ}deg)
+													 translate3d({s.translate3d_X}px,{s.translate3d_Y}px,{s.translate3d_Z}px)
+													 skew({s.skewX}deg,{s.skewY}deg);
 								">
 			
 		</div>
