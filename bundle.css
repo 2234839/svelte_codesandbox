@@ -1,0 +1,7 @@
+.config-list.svelte-1527ebe{display:grid;grid-template-columns:max-content auto}.appear.svelte-1527ebe{padding:30px;border:1px solid #000}
+.grid-wrap.svelte-1q611ll{display:grid;grid-template-columns:60px 60px;grid-template-rows:60px 60px 30px 10px 25px 10%;grid-template-areas:"a b b" 
+                       "a c d"
+}.grid-wrap-item.svelte-1q611ll{padding:2px;background:red;outline:1px solid #333}
+.mode.svelte-1sv2lu4{height:200px;width:300px;padding:1px;border:3px solid #fff;mask-image:linear-gradient(to bottom, #00000000, #00000000, #ffffffff 40%);mask-mode:alpha}.body.svelte-1sv2lu4{background-image:url(https://shenzilong.cn/util/redirect_to_bing_daily_picture_address);background-size:100% 100%;position:relative;padding:0 6px}.item.svelte-1sv2lu4{border:1px solid black;background:yellow}
+
+/*# sourceMappingURL=bundle.css.map */
