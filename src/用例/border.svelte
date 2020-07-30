@@ -2,18 +2,20 @@
 	import ValueSwitcher from "../base/ValueSwitcher.svelte";
 	import { value_map } from "../base/util.js";
 	let config = {
-	  colorCentre: { default: "#009345", type: "color" },
-	  colorTop: { default: "#00ffff", type: "color" },
-	  colorRight: { default: "#ff00ff", type: "color" },
-	  colorBottom: { default: "#ffff00", type: "color" },
-	  colorLeft: { default: "#000", type: "color" },
-
 	  width: { default: 20, type: "range", max: 100, min: 0 },
 	  height: { default: 20, type: "range", max: 100, min: 0 },
 	  topWidth: { default: 20, type: "range", max: 100, min: 0 },
 	  rightWidth: { default: 20, type: "range", max: 100, min: 0 },
 	  bottomWidth: { default: 20, type: "range", max: 100, min: 0 },
 	  leftWidth: { default: 20, type: "range", max: 100, min: 0 },
+
+	  borderRadius: { default: 0, type: "range", max: 360, min: 0 },
+
+	  colorCentre: { default: "#009345", type: "color" },
+	  colorTop: { default: "#00ffff", type: "color" },
+	  colorRight: { default: "#ff00ff", type: "color" },
+	  colorBottom: { default: "#ffff00", type: "color" },
+	  colorLeft: { default: "#000", type: "color" },
 
 	  rotateZ: { default: 45, type: "range", max: 360, min: 0 },
 
@@ -35,6 +37,7 @@
 								transform: rotateZ({s.rotateZ}deg)
 													 translate3d({s.translate3d_X}px,{s.translate3d_Y}px,{s.translate3d_Z}px)
 													 skew({s.skewX}deg,{s.skewY}deg);
+								border-radius:{s.borderRadius}px; ;
 								">
 			
 		</div>
